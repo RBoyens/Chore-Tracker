@@ -1,24 +1,24 @@
-import {React, useState, useEffect} from 'react'
+import { React, useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const Home = () => {
     const [chores, setChores] = useState([])
-    const navigate = useNavigate ()
+    const navigate = useNavigate()
 
-    useEffect(()=> {
+    useEffect(() => {
         axios.get("http://localhost:8000/api/dashboard")
             .then((response) => {
                 console.log(response.data)
                 setChores(response.data)
             })
-            .catch((error)=> {
-                console.log (error)
+            .catch((error) => {
+                console.log(error)
             })
-    },[])
+    }, [])
 
-    return(
+    return (
         <div className="container">
 
             <div class="signup-section">
@@ -31,7 +31,7 @@ const Home = () => {
                 </div>
 
             </div>
-{/* Start Table */}
+            {/* Start Table */}
             <div className="chore_table">
                 <table>
                     <tr>
@@ -39,14 +39,14 @@ const Home = () => {
                         <th>Location</th>
                         <th>Action</th>
                     </tr>
-                    {chores.map((item)=> {
-                        return(
+                    {chores.map((item) => {
+                        return (
                             <tr key={item}>
                                 <td>{item.title}</td>
                                 <td>{item.location}</td>
                                 <td>
-                                    <button><Link to={`/view/${item._id}`}>Details</Link></button> <br />
-                                    <button><Link to={`/edit/${item._id}`}>Edit</Link></button>
+                                    <button onClick={() => navigate(`/view/${item._id}`)}>Details</button> <br />
+                                    <button onClick={() => navigate(`/edit/${item._id}`)}>Edit</button>
                                 </td>
                             </tr>
                         )
@@ -54,8 +54,8 @@ const Home = () => {
                 </table>
             </div>
             <div class="social-buttons">
-                    <button onClick={() => navigate('/addJob')}><i class="bx bxl-google"></i> Add Chore</button>
-                    <button><i class="bx bxl-google"></i> Logout</button>
+                <button onClick={() => navigate('/addJob')}><i class="bx bxl-google"></i> Add Chore</button>
+                <button><i class="bx bxl-google"></i> Logout</button>
             </div>
         </div>
     )

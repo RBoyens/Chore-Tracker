@@ -43,6 +43,7 @@ body{
 button{
     width: 90%;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .signup-section header{
@@ -79,11 +80,11 @@ p{
     cursor: pointer;
 }
 
-.login-section .social-buttons button{
+.social-buttons button{
     border: 1px solid #000;
 }
 
-.login-section .social-buttons button i,
+.social-buttons button i,
 .signup-section .social-buttons button i{
     font-size: 25px;
 }
